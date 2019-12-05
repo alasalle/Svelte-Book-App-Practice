@@ -1,8 +1,19 @@
 <script>
   import Book from "./book.svelte";
+  import Button from "./button.svelte";
   let title = "";
   let pages = 0;
   let description = "";
+  let books = [];
+
+  function addBook() {
+    const newBook = {
+      title: title,
+      pages: pages,
+      description: description
+    };
+    books = books.concat(newBook);
+  }
   function setTitle(event) {
     title = event.target.value;
   }
@@ -36,5 +47,17 @@
     <label for="description">Description</label>
     <textarea rows="3" id="description" bind:value={description} />
   </div>
+  <Button on:click={addBook}>ADD Book</Button>
 </section>
-<Book bookTitle={title} bookPages={pages} bookDescription={description} />
+<section>
+  {#if books.length === 0}
+    <p>Add a new book</p>
+  {:else}
+    {#each books as book}
+      <Book
+        bookTitle={book.title}
+        bookPages={book.pages}
+        bookDescription={book.description} />
+    {/each}
+  {/if}
+</section>

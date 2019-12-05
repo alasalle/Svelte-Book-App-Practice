@@ -35,5 +35,5 @@
   <h1>{bookTitle}</h1>
   <h2>{bookPages}</h2>
   <p>{bookDescription}</p>
-  <button>Add</button>
+  <button>Buy</button>
 </div>
